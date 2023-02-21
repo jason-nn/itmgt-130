@@ -15,7 +15,7 @@ SELECT COUNT(order_id) FROM order_items WHERE product_id = 1;
 SELECT oi.order_id, oi.quantity, p.unit_price, oi.quantity * p.unit_price FROM order_items oi LEFT JOIN products p on oi.product_id = p.id;
 
 -- Get the total sale value of each order.
-SELECT order_id, SUM(oi.quantity * p.unit_price) FROM order_items oi LEFT JOIN products p on oi.product_id = p.id GROUP BY oi.order_id;
+SELECT oi.order_id, SUM(oi.quantity * p.unit_price) FROM order_items oi LEFT JOIN products p on oi.product_id = p.id GROUP BY oi.order_id;
 
 SELECT o.order_date, oi.quantity, p.unit_price FROM order_items oi LEFT JOIN orders o on oi.order_id = o.id LEFT JOIN products p on oi.product_id = p.id;
 
