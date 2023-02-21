@@ -46,7 +46,7 @@ SET default_table_access_method = heap;
 -- Name: customers; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.customers (
+CREATE TABLE customers (
     id integer NOT NULL primary key,
     first_name character varying(50),
     last_name character varying(50),
@@ -55,14 +55,14 @@ CREATE TABLE public.customers (
 );
 
 
-ALTER TABLE public.customers OWNER TO postgres;
+ALTER TABLE customers OWNER TO postgres;
 
 --
 -- TOC entry 215 (class 1259 OID 16402)
 -- Name: employees; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.employees (
+CREATE TABLE employees (
     id integer NOT NULL primary key,
     first_name character varying(50),
     last_name character varying(50),
@@ -70,31 +70,31 @@ CREATE TABLE public.employees (
 );
 
 
-ALTER TABLE public.employees OWNER TO postgres;
+ALTER TABLE employees OWNER TO postgres;
 
 --
 -- TOC entry 217 (class 1259 OID 16410)
 -- Name: orders; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.orders (
+CREATE TABLE orders (
     id integer NOT NULL primary key,
     order_date timestamp without time zone,
     customer_id integer,
     foreign key (customer_id)
-        references public.customers (id)
+        references customers (id)
         on delete cascade
 );
 
 
-ALTER TABLE public.orders OWNER TO postgres;
+ALTER TABLE orders OWNER TO postgres;
 
 --
 -- TOC entry 216 (class 1259 OID 16405)
 -- Name: products; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.products (
+CREATE TABLE products (
     id integer NOT NULL primary key,
     sku character varying(50),
     name character varying(50),
@@ -103,27 +103,27 @@ CREATE TABLE public.products (
 );
 
 
-ALTER TABLE public.products OWNER TO postgres;
+ALTER TABLE products OWNER TO postgres;
 
 --
 -- TOC entry 218 (class 1259 OID 16413)
 -- Name: order_items; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.order_items (
+CREATE TABLE order_items (
     id integer NOT NULL primary key,
     order_id integer,
     product_id integer,
     quantity integer,
     foreign key (product_id)
-        references public.products (id)
+        references products (id)
         on delete cascade,
     foreign key (order_id)
-        references public.orders (id)
+        references orders (id)
         on delete cascade
 );
 
-ALTER TABLE public.order_items OWNER TO postgres;
+ALTER TABLE order_items OWNER TO postgres;
 
 --
 -- TOC entry 3330 (class 0 OID 16399)
@@ -131,7 +131,7 @@ ALTER TABLE public.order_items OWNER TO postgres;
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.customers (id, first_name, last_name, rewards_points, registration_date) FROM stdin;
+COPY customers (id, first_name, last_name, rewards_points, registration_date) FROM stdin;
 1	Robin	Padilla	0	2022-06-01 00:00:00
 2	Loren	Legarda	0	2022-06-01 00:00:00
 3	Raffy	Tulfo	0	2022-06-01 00:00:00
@@ -153,7 +153,7 @@ COPY public.customers (id, first_name, last_name, rewards_points, registration_d
 -- Data for Name: employees; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.employees (id, first_name, last_name, hire_date) FROM stdin;
+COPY employees (id, first_name, last_name, hire_date) FROM stdin;
 \.
 
 --
@@ -162,7 +162,7 @@ COPY public.employees (id, first_name, last_name, hire_date) FROM stdin;
 -- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.orders (id, order_date, customer_id) FROM stdin;
+COPY orders (id, order_date, customer_id) FROM stdin;
 1001	2022-07-01 00:00:00	6
 1002	2022-07-01 00:00:00	2
 1003	2022-07-01 00:00:00	10
@@ -200,7 +200,7 @@ COPY public.orders (id, order_date, customer_id) FROM stdin;
 -- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.products (id, sku, name, description, unit_price) FROM stdin;
+COPY products (id, sku, name, description, unit_price) FROM stdin;
 1	AMERICANO	Long Black	Diluted Black Coffee (a.k.a. Long Black)	160
 2	BREWED	Brewed Coffee	Just Coffee!	100
 3	CAPPUCCINO	Cappuccino	Frothy Coffee!	130
@@ -216,7 +216,7 @@ COPY public.products (id, sku, name, description, unit_price) FROM stdin;
 -- Data for Name: order_items; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.order_items (id, order_id, product_id, quantity) FROM stdin;
+COPY order_items (id, order_id, product_id, quantity) FROM stdin;
 10001	1001	5	1
 10002	1002	5	2
 10003	1002	1	1
