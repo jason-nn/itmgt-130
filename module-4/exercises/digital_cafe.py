@@ -52,8 +52,8 @@ def get_quantity():
 def get_order_item():
     selected_product = get_selected_product()
     quantity = get_quantity()
-    print(selected_product)
-    print(quantity)
 
+    order_item = selected_product.copy()
+    order_item['quantity'] = quantity
 
-get_order_item()
+    return order_item
