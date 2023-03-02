@@ -33,7 +33,7 @@ def check_guess(guess):
             end_game()
     else:
         if (guess == 'GIVE UP'):
-            print("Game has been forfeited.")
+            print("Game has been forfeited")
             end_game()
         else:
             print("Invalid input")
