@@ -28,22 +28,27 @@ def get_selected_product():
         print(f"Enter {id} for {product['name']}")
 
     selected_product_id_string = input('Select a product: ')
+    print()
     while not (is_int(selected_product_id_string) and int(selected_product_id_string) in products.keys()):
         print('Invalid input')
         selected_product_id_string = input('Select a product: ')
+        print()
 
     selected_product_id = int(selected_product_id_string)
     selected_product = products[selected_product_id]
 
     print(f"You have selected {selected_product['name']}")
+    print()
     return selected_product
 
 
 def get_quantity():
     quantity_string = input('Enter quantity: ')
+    print()
     while not (is_int(quantity_string) and int(quantity_string) > 0):
         print('Invalid input')
         quantity_string = input('Enter quantity: ')
+        print()
 
     quantity = int(quantity_string)
     return quantity
@@ -64,9 +69,11 @@ def ask_to_add_order_item():
     print('Enter 2 for YES')
 
     user_input = input('Would you like to order another item? ')
+    print()
     while not (is_int(user_input) and int(user_input) in [1, 2]):
         print('Invalid input')
         user_input = input('Would you like to order another item? ')
+        print()
 
     return bool(int(user_input)-1)
 
@@ -74,6 +81,7 @@ def ask_to_add_order_item():
 def print_receipt(order_items):
     total = 0
 
+    print('RECEIPT')
     for order_item in order_items:
         name = order_item['name']
         price = order_item['price']
