@@ -39,9 +39,21 @@ def get_selected_product():
     return selected_product
 
 
+def get_quantity():
+    quantity_string = input('Enter quantity: ')
+    while not (is_int(quantity_string) and int(quantity_string) > 0):
+        print('Invalid input')
+        quantity_string = input('Enter quantity: ')
+
+    quantity = int(quantity_string)
+    return quantity
+
+
 def get_order_item():
     selected_product = get_selected_product()
+    quantity = get_quantity()
     print(selected_product)
+    print(quantity)
 
 
 get_order_item()
