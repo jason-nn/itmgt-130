@@ -60,6 +60,7 @@ def get_order_item():
 
     order_item = selected_product.copy()
     order_item['quantity'] = quantity
+    order_item['price'] *= order_item['quantity']
 
     return order_item
 
@@ -85,6 +86,7 @@ def group_order_items(order_items):
         name = order_item['name']
         if name in grouped_order_items.keys():
             grouped_order_items[name]['quantity'] += order_item['quantity']
+            grouped_order_items[name]['price'] += order_item['price']
         else:
             grouped_order_items[name] = order_item
 
@@ -103,7 +105,7 @@ def print_receipt(order_items):
 
         print(f"{name} - {quantity} - {price} pesos")
 
-        total += price * quantity
+        total += price
 
     print(f"Total due: {total} pesos")
 
