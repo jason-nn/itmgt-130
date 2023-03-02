@@ -23,10 +23,10 @@ def end_game():
 
 def check_guess(guess):
     if (is_int(guess)):
-        guess_as_int = int(guess)
-        if (SECRET_NUMBER > guess_as_int):
+        guess = int(guess)
+        if (SECRET_NUMBER > guess):
             print(f"The secret number is greater than {guess}")
-        elif (SECRET_NUMBER < guess_as_int):
+        elif (SECRET_NUMBER < guess):
             print(f"The secret number is less than {guess}")
         else:
             print(f"Congratulations, {guess} is the number!")
