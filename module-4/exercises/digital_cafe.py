@@ -87,9 +87,9 @@ def print_receipt(order_items):
         price = order_item['price']
         quantity = order_item['quantity']
 
-        total += price * quantity
-
         print(f"{name} - {quantity} - {price} pesos")
+
+        total += price * quantity
 
     print(f"Total due: {total} pesos")
 
