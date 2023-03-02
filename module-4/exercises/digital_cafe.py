@@ -78,12 +78,26 @@ def ask_to_add_order_item():
     return bool(int(user_input)-1)
 
 
+def group_order_items(order_items):
+    grouped_order_items = {}
+
+    for order_item in order_items:
+        name = order_item['name']
+        if name in grouped_order_items.keys():
+            grouped_order_items[name]['quantity'] += order_item['quantity']
+        else:
+            grouped_order_items[name] = order_item
+
+    return grouped_order_items
+
+
 def print_receipt(order_items):
     total = 0
 
+    grouped_order_items = group_order_items(order_items)
+
     print('RECEIPT')
-    for order_item in order_items:
-        name = order_item['name']
+    for name, order_item in grouped_order_items.items():
         price = order_item['price']
         quantity = order_item['quantity']
 
