@@ -60,11 +60,30 @@ def get_order_item():
 
 
 def ask_to_add_order_item():
-    pass
+    print('Enter 1 for NO')
+    print('Enter 2 for YES')
+
+    user_input = input('Would you like to order another item? ')
+    while not (is_int(user_input) and int(user_input) in [1, 2]):
+        print('Invalid input')
+        user_input = input('Would you like to order another item? ')
+
+    return bool(int(user_input)-1)
 
 
 def print_receipt(order_items):
-    pass
+    total = 0
+
+    for order_item in order_items:
+        name = order_item['name']
+        price = order_item['price']
+        quantity = order_item['quantity']
+
+        total += price * quantity
+
+        print(f"{name} - {quantity} - {price} pesos")
+
+    print(f"Total due: {total} pesos")
 
 
 def get_order():
@@ -74,3 +93,12 @@ def get_order():
     while not order_finished:
         order_item = get_order_item()
         order_items.append(order_item)
+
+        add_order_item = ask_to_add_order_item()
+        if add_order_item == False:
+            order_finished = True
+
+    print_receipt(order_items)
+
+
+get_order()
