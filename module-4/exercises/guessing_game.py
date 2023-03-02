@@ -22,7 +22,6 @@ def end_game():
 
 
 def check_guess(guess):
-
     if (is_int(guess)):
         guess = int(guess)
         if (SECRET_NUMBER > guess):
@@ -32,7 +31,6 @@ def check_guess(guess):
         else:
             print(f"Congratulations, {guess} is the number!")
             end_game()
-
     else:
         if (guess == 'GIVE UP'):
             print("Game has been forfeited")
