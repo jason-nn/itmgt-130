@@ -16,27 +16,27 @@ def is_int(string):
         return True
 
 
-def check_guess(guess):
-    global game_is_over  # to access variable outside function
+def end_game():
+    global game_is_over
+    game_is_over = True
 
+
+def check_guess(guess):
     if (is_int(guess)):
         guess_as_int = int(guess)
         if (SECRET_NUMBER > guess_as_int):
             print(f"The secret number is greater than {guess}")
-            print("Try again!")
         elif (SECRET_NUMBER < guess_as_int):
             print(f"The secret number is less than {guess}")
-            print("Try again!")
         else:
             print(f"Congratulations, {guess} is the number!")
-            game_is_over = True
+            end_game()
     else:
         if (guess == 'GIVE UP'):
             print("Game has been forfeited.")
-            game_is_over = True
+            end_game()
         else:
             print("Invalid input")
-            print("Try again!")
 
 
 while (not game_is_over):
