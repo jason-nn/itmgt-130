@@ -57,3 +57,20 @@ def get_order_item():
     order_item['quantity'] = quantity
 
     return order_item
+
+
+def ask_to_add_order_item():
+    pass
+
+
+def print_receipt(order_items):
+    pass
+
+
+def get_order():
+    order_items = []
+    order_finished = False
+
+    while not order_finished:
+        order_item = get_order_item()
+        order_items.append(order_item)
