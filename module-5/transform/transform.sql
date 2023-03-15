@@ -1,10 +1,10 @@
-SELECT * FROM order_items; # done
+SELECT * FROM order_items;
 
-SELECT * FROM orders; # done
+SELECT * FROM orders;
 
-SELECT * FROM products; # done
+SELECT * FROM products;
 
-SELECT * FROM customers; # done
+SELECT * FROM customers;
 
 SELECT * FROM employees;
 
