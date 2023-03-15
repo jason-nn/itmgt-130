@@ -1,3 +1,5 @@
+-- start by looking at all tables to determine how to join and which tables are relevant 
+
 SELECT * FROM order_items;
 
 SELECT * FROM orders;
@@ -8,7 +10,18 @@ SELECT * FROM customers;
 
 SELECT * FROM employees;
 
-SELECT * FROM orders o LEFT JOIN customers c ON o.customer_id = c.id LEFT JOIN order_items oi on o.id = oi.order_id LEFT JOIN products p on oi.product_id = p.id;
+-- employees is not connected to other tables, but will join other tables starting with orders as the base table
+-- join with customers table on customer id
+-- join with order items on order id
+-- join with products on product id 
+
+SELECT * 
+FROM orders o 
+LEFT JOIN customers c ON o.customer_id = c.id 
+LEFT JOIN order_items oi on o.id = oi.order_id 
+LEFT JOIN products p on oi.product_id = p.id;
+
+-- remove "id" columns as they are unclear in the big table and appear multiple times which may be confusing
 
 SELECT 
 o.order_date, o.customer_id,
@@ -19,6 +32,8 @@ FROM orders o
 LEFT JOIN customers c ON o.customer_id = c.id 
 LEFT JOIN order_items oi on o.id = oi.order_id 
 LEFT JOIN products p on oi.product_id = p.id;
+
+-- rename columns to be more explicit for ease of parsing as something like name on product could be confused with customer name
 
 SELECT 
 o.order_date, o.customer_id,
