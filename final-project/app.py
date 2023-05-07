@@ -14,7 +14,8 @@ products = {
 }
 
 accounts = {
-    'jason': 'password'
+    'jason': 'password',
+    'john': 'doe'
 }
 
 
@@ -165,11 +166,9 @@ def validate_account_details(account_name, password):
             return True
         else:
             print('Password is incorrect.')
-            print()
             return False
     else:
         print('Account does not exist.')
-        print()
         return False
 
 
@@ -207,7 +206,10 @@ def main():
     payment_successful = process_payment(grouped_order_items)
 
     if payment_successful:
-        print('Move forward to restaurant staff flow')
+        print('RESTAURANT FLOW')
+        print('RESTAURANT FLOW')
+        print('RESTAURANT FLOW')
+        print()
 
 
 main()
