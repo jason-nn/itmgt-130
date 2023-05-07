@@ -80,15 +80,17 @@ def ask_to_add_order_item():
 
 
 def group_order_items(order_items):
-    grouped_order_items = {}
+    grouped_order_items_raw = {}
 
     for order_item in order_items:
         name = order_item['name']
-        if name in grouped_order_items.keys():
-            grouped_order_items[name]['quantity'] += order_item['quantity']
-            grouped_order_items[name]['price'] += order_item['price']
+        if name in grouped_order_items_raw.keys():
+            grouped_order_items_raw[name]['quantity'] += order_item['quantity']
+            grouped_order_items_raw[name]['price'] += order_item['price']
         else:
-            grouped_order_items[name] = order_item
+            grouped_order_items_raw[name] = order_item
+
+    grouped_order_items = grouped_order_items_raw.values()
 
     return grouped_order_items
 
@@ -97,7 +99,8 @@ def print_receipt(grouped_order_items):
     total = 0
 
     print('RECEIPT')
-    for name, order_item in grouped_order_items.items():
+    for order_item in grouped_order_items:
+        name = order_item['name']
         price = order_item['price']
         quantity = order_item['quantity']
 
@@ -106,8 +109,6 @@ def print_receipt(grouped_order_items):
         total += price
 
     print(f"Total due: {total} pesos")
-
-    return total
 
 
 def get_order():
@@ -124,4 +125,9 @@ def get_order():
 
     grouped_order_items = group_order_items(order_items)
 
-    return print_receipt(grouped_order_items)
+    print_receipt(grouped_order_items)
+
+    return grouped_order_items
+
+
+get_order()
