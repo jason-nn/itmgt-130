@@ -93,10 +93,8 @@ def group_order_items(order_items):
     return grouped_order_items
 
 
-def print_receipt(order_items):
+def print_receipt(grouped_order_items):
     total = 0
-
-    grouped_order_items = group_order_items(order_items)
 
     print('RECEIPT')
     for name, order_item in grouped_order_items.items():
@@ -122,7 +120,9 @@ def get_order():
         if add_order_item == False:
             order_finished = True
 
-    print_receipt(order_items)
+    grouped_order_items = group_order_items(order_items)
+
+    print_receipt(grouped_order_items)
 
 
 get_order()
