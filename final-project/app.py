@@ -197,6 +197,17 @@ def process_payment(grouped_order_items):
         return False
 
 
+def show_order(grouped_order_items):
+    print('ORDER DETAILS')
+    for order_item in grouped_order_items:
+        name = order_item['name']
+        quantity = order_item['quantity']
+
+        print(f"{name} - {quantity}")
+
+    print()
+
+
 def main():
     print('CUSTOMER FLOW')
     print('CUSTOMER FLOW')
@@ -210,6 +221,9 @@ def main():
         print('RESTAURANT FLOW')
         print('RESTAURANT FLOW')
         print()
+        print('Order has been received.')
+        print()
+        show_order(grouped_order_items)
 
 
 main()
