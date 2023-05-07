@@ -18,6 +18,13 @@ accounts = {
     'john': 'doe'
 }
 
+order_statuses = {
+    1: 'RECEIVED',
+    2: 'PREPARING IN THE KITCHEN',
+    3: 'PACKAGING',
+    4: 'READY TO BE DELIVERED'
+}
+
 
 def is_int(string):
     try:
@@ -208,6 +215,22 @@ def show_order(grouped_order_items):
     print()
 
 
+def get_order_status(current_order_status):
+    print(f'Order status is currently {order_statuses[current_order_status]}')
+
+    for id, order_status in order_statuses.items():
+        print(f"Enter {id} to change order status to {order_status}")
+
+    selected_order_status = input('Select order status: ')
+    print()
+    while not (is_int(selected_order_status) and int(selected_order_status) in order_statuses.keys()):
+        print('Invalid input')
+        selected_order_status = input('Select order status: ')
+        print()
+
+    return int(selected_order_status)
+
+
 def main():
     print('CUSTOMER FLOW')
     print('CUSTOMER FLOW')
@@ -224,6 +247,17 @@ def main():
         print('Order has been received.')
         print()
         show_order(grouped_order_items)
+
+        order_status = 1
+
+        while order_status != 4:
+            new_order_status = get_order_status(order_status)
+            order_status = new_order_status
+            print(f'Order status is now {order_statuses[new_order_status]}')
+            print()
+
+        print('Order is now ready to be delivered.')
+        print('Initiating call to Lalamove API to assign a driver.')
 
 
 main()
