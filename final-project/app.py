@@ -107,6 +107,8 @@ def print_receipt(grouped_order_items):
 
     print(f"Total due: {total} pesos")
 
+    return total
+
 
 def get_order():
     order_items = []
@@ -122,7 +124,4 @@ def get_order():
 
     grouped_order_items = group_order_items(order_items)
 
-    print_receipt(grouped_order_items)
-
-
-get_order()
+    return print_receipt(grouped_order_items)
