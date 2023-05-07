@@ -13,6 +13,10 @@ products = {
     }
 }
 
+accounts = {
+    'jason': 'password'
+}
+
 
 def is_int(string):
     try:
@@ -141,10 +145,48 @@ def get_total(grouped_order_items):
     return total
 
 
+def ask_to_proceed_to_payment(total):
+    print('Enter 1 for NO')
+    print('Enter 2 for YES')
+
+    user_input = input(f'Pay {total} pesos? ')
+    print()
+    while not (is_int(user_input) and int(user_input) in [1, 2]):
+        print('Invalid input')
+        user_input = input(f'Pay ${total} pesos? ')
+        print()
+
+    return bool(int(user_input)-1)
+
+
 def process_payment(grouped_order_items):
     total = get_total(grouped_order_items)
-    print(total)
+
+    proceed_to_payment = ask_to_proceed_to_payment(total)
+
+    if proceed_to_payment:
+        account_name = input(f'Enter account name: ')
+        password = input(f'Enter password: ')
+        print()
+        print(f'Successfully processed payment of {total} pesos')
+        print()
+        return True
+    else:
+        print('Unsuccesful payment. Unfortunately, we will have to cancel your order.')
+        print()
+        return False
 
 
-grouped_order_items = get_order()
-process_payment(grouped_order_items)
+def main():
+    print('CUSTOMER FLOW')
+    print('CUSTOMER FLOW')
+    print('CUSTOMER FLOW')
+    print()
+    grouped_order_items = get_order()
+    payment_successful = process_payment(grouped_order_items)
+
+    if payment_successful:
+        print('Move forward to restaurant staff flow')
+
+
+main()
