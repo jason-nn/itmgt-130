@@ -159,6 +159,20 @@ def ask_to_proceed_to_payment(total):
     return bool(int(user_input)-1)
 
 
+def validate_account_details(account_name, password):
+    if account_name in accounts.keys():
+        if password == accounts[account_name]:
+            return True
+        else:
+            print('Password is incorrect.')
+            print()
+            return False
+    else:
+        print('Account does not exist.')
+        print()
+        return False
+
+
 def process_payment(grouped_order_items):
     total = get_total(grouped_order_items)
 
@@ -168,6 +182,13 @@ def process_payment(grouped_order_items):
         account_name = input(f'Enter account name: ')
         password = input(f'Enter password: ')
         print()
+        while not validate_account_details(account_name, password):
+            print('Try entering account details again.')
+            print()
+            account_name = input(f'Enter account name: ')
+            password = input(f'Enter password: ')
+            print()
+
         print(f'Successfully processed payment of {total} pesos')
         print()
         return True
