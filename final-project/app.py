@@ -109,6 +109,7 @@ def print_receipt(grouped_order_items):
         total += price
 
     print(f"Total due: {total} pesos")
+    print()
 
 
 def get_order():
@@ -130,4 +131,20 @@ def get_order():
     return grouped_order_items
 
 
-get_order()
+def get_total(grouped_order_items):
+    total = 0
+
+    for order_item in grouped_order_items:
+        price = order_item['price']
+        total += price
+
+    return total
+
+
+def process_payment(grouped_order_items):
+    total = get_total(grouped_order_items)
+    print(total)
+
+
+grouped_order_items = get_order()
+process_payment(grouped_order_items)
